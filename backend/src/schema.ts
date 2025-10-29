@@ -20,6 +20,7 @@ export const typeDefs = gql/* GraphQL */ `
     lastName: String!
     email: String
     age: Int
+    program: String
   }
 
   type Query {

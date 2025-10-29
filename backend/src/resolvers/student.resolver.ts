@@ -3,8 +3,8 @@ import { Student } from "../types";
 
 export const studentResolvers = {
   Query: {
-    students(): Student[] {
+    async students(): Promise<Student[]> {
       return StudentsRepo.findAll();
-    }
-  }
+    },
+  },
 };

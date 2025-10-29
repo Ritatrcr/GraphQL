@@ -1,14 +1,28 @@
+import { getDb } from "../config/firebase";
 import { Student } from "../types";
 
-// ⚠️ Temporal: luego lo cambiamos a base de datos (Prisma, Postgres, etc.)
-const STUDENTS: Student[] = [
-  { id: "s1", firstName: "Ana", lastName: "García", email: "ana@example.com", age: 21 },
-  { id: "s2", firstName: "Luis", lastName: "Pérez", email: "luis@example.com", age: 23 },
-  { id: "s3", firstName: "Rita", lastName: "Cruz", email: "rita@example.com", age: 22 }
-];
+const COL = "students";
 
 export const StudentsRepo = {
-  findAll(): Student[] {
-    return STUDENTS;
-  }
+  async findAll(): Promise<Student[]> {
+    const db = getDb();
+    const snap = await db.collection(COL).get();
+    return snap.docs.map((d) => {
+      const data = d.data() as Student;
+      // por convención, sincroniza id con doc.id si no existe
+      return { ...data, id: data.id ?? d.id };
+    });
+  },
+
+  async upsert(student: Student): Promise<void> {
+    const db = getDb();
+    const id = student.id;
+    if (!id) throw new Error("Student.id es requerido para upsert");
+    await db.collection(COL).doc(id).set(student, { merge: true });
+  },
+
+  async remove(id: string): Promise<void> {
+    const db = getDb();
+    await db.collection(COL).doc(id).delete();
+  },
 };
