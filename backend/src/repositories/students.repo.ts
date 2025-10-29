@@ -1,3 +1,4 @@
+// src/repositories/students.repo.ts
 import { getDb } from "../config/firebase";
 import { Student } from "../types";
 
@@ -8,8 +9,7 @@ export const StudentsRepo = {
     const db = getDb();
     const snap = await db.collection(COL).get();
     return snap.docs.map((d) => {
-      const data = d.data() as Student;
-      // por convención, sincroniza id con doc.id si no existe
+      const data = d.data() as Student; // 👈 cast tipado
       return { ...data, id: data.id ?? d.id };
     });
   },
