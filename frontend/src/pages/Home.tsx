@@ -43,10 +43,17 @@ export default function Home() {
       {/* HERO */}
       <section className="hero">
         <div className="hero__inner">
-          <h1>🐾 Cats & 🎓 Students — GraphQL Explorer</h1>
+          <h1>GraphQL Explorer</h1>
           <p>Selecciona campos, ejecuta consultas y visualiza resultados con un clic.</p>
           <div className="toolbar" style={{ marginTop: 6 }}>
-            <a className="btn ghost" href="/graphql" target="_blank" rel="noreferrer">Abrir Playground /graphql</a>
+            <a
+              className="btn ghost"
+              href="https://graphql-1-1vgu.onrender.com/graphql"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Abrir Playground /graphql
+            </a>
           </div>
         </div>
       </section>
