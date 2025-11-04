@@ -1,5 +1,8 @@
 # Cats & Students GraphQL — README
 
+<img width="1548" height="116" alt="image" src="https://github.com/user-attachments/assets/8ba7bcba-b758-4690-8ebc-f8ea97300a3f" />
+
+
 ## 👥 Integrantes
 - **Rita Trindade da Cruz**
 - **Brandon Eduardo Merchan Sandocal**
